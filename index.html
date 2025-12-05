@@ -1,45 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>А кой е твоят сезон?!</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <title>SPA Demo</title>
+    <script type="module" src="/src/app.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-    <div>
-        <h1>Цветовете ми</h1>
-    <h3>Подчертай вътрешния си блясък!</h3>
-    <div class="nav">
-        <a href="/">Начало</a>
-        <a href="/test">Тест</a>
-        <a href="/palette">Палитри</a>
-    </div>
-    <div>
-        <h2>„Color season“ (цветен сезон) е концепция от теорията за цветотиповете в стила и визията, която разделя хората на групи (пр. Пролет, Лято, Есен, Зима), в зависимост от тоновете на кожата, очите и косата им.
-            Ето защо е важно да знаеш своя „цветен сезон“:
-        </h2>
-        <ul>
-            <li>Помага ти да избираш дрехи и аксесоари, които естествено хармонират с тена ти и подчертават красотата ти.</li>
-            <li>Намалява грешките при пазаруване (особено онлайн, където няма опция за проба) — когато знаеш кои цветове ти „работят“, не се лъже по модни тенденции, които може да не ти стоят добре.</li>
-            <li>Улеснява комбинирането на дрехите — цветовете от твоята палитра си пасват по-лесно помежду си, така че гардеробът ти става по‑универсален и практичен.</li></h2>
-        </ul>
-        <h4>Ще ни трябва само:</h4>
-        <ul>
-            <li>Какъв цвят е косата ти? 💇🏼‍♀️</li>
-            <li>Какъв цвят са очите ти? 👁️</li>
-            <li>Какъв е подтона на кожата ти? ✋🏼<a href="url">Провери тук! </a></li>
-        </ul>
-        <a href="url" class="button">Започни теста!</a>
-    </div>  
-        <div id="app"></div>
-            <script type="module" src="app.js"></script>
-        <div id="footer">
-            <footer>
-            <p></p>
-            </footer>
-        </div>
-    </div> 
+        body {
+            font-family: 'Cormorant Infant', serif;
+            color: #333;
+            background: #cea9bc;
+            padding-top: 10px;
+            padding-bottom: 180px;
+            padding-left: 180px;
+            padding-right: 180px;
+        }
+
+        section {
+            background-color: rgba(255, 255, 255, 0.486);
+            padding: 50px;
+            border-radius: 20px;
+        }
+
+        nav {
+            font-family: 'Montserrat';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+
+        nav a {
+            color: rgb(88, 70, 86);
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        p {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        img {
+            padding-top: 50px;
+            display: flex;
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        a:link,
+        a:visited {
+            color: #755974;
+            text-decoration: none;
+            font-weight: normal;
+        }
+
+        h1 {
+            display: flex;
+            color: rgb(88, 70, 86);
+            font-size: 80px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h2 {
+            font-family: 'Montserrat';
+            display: flex;
+            color: #333;
+            justify-content: center;
+            align-items: center; 
+        }
+
+        h3 {
+            font-family: 'Montserrat';
+            display: flex;
+            color: #333;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h4 {
+            font-family: 'Montserrat';
+            color: #333;
+        }
+
+        li {
+            font-size: x-large;
+        }
+
+
+
+        .button {
+            font-family: 'Cormorant Infant', serif;
+            display: inline-block;
+            padding: 0.5em 1em;
+            border: 1px solid #333;
+            background-color: #d8add6;
+            color: #333;
+            font-size: 22px;
+            line-height: 1;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 0.25em;
+        }
+
+
+
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 20px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+            border-radius: 50%;
+        }
+
+        .container:hover input~.checkmark {
+            background-color: #ccc;
+        }
+
+        .container input:checked~.checkmark {
+            background-color: #2196F3;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .container input:checked~.checkmark:after {
+            display: block;
+        }
+
+        .container .checkmark:after {
+            top: 9px;
+            left: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        #hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<header>
+    <nav>
+        <a href="/" id="home-link">Начало</a>
+        <a href="/test" id="test-link">Тест</a>
+        <a href="/project" id="project-link">За проекта</a>
+    </nav>
+</header>
+
+<main>
+
+</main>
+<div id="hidden">
+
+    <body>
+        <section id="home-view">
+            <h1>Цветовете ми</h1>
+            <h3>Подчертай вътрешния си блясък!</h3>
+            <div>
+                <h2>„Color season“ (цветен сезон) е концепция от теорията за цветотиповете в стила и визията, която
+                    разделя хората на групи (пр. Пролет, Лято, Есен, Зима), в зависимост от тоновете на кожата, очите и
+                    косата им.
+                    Ето защо е важно да знаеш своя „цветен сезон“:
+                </h2>
+                <ul>
+                    <li>Помага ти да избираш дрехи и аксесоари, които естествено хармонират с тена ти и подчертават
+                        красотата ти.</li>
+                    <li>Намалява грешките при пазаруване (особено онлайн, където няма опция за проба) — когато знаеш кои
+                        цветове ти „работят“, не се лъже по модни тенденции, които може да не ти стоят добре.</li>
+                    <li>Улеснява комбинирането на дрехите — цветовете от твоята палитра си пасват по-лесно помежду си,
+                        така че гардеробът ти става по‑универсален и практичен.</li>
+                    </h2>
+                </ul>
+                <h4>Ще ни трябва само:</h4>
+                <ul>
+                    <li>Какъв цвят е косата ти? 💇🏼‍♀️</li>
+                    <li>Какъв цвят са очите ти? 👁️</li>
+                    <li>Какъв е подтона на кожата ти? ✋🏼</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="test-view">
+            <h1>Тест</h1>
+            <h3>Теста е безплатен!
+            </h3>
+            <h3>Въпросите могат да имат само един отговор.</h3>
+            <h3>Да запoчвме!</h3>
+
+
+            <h4>1. Какъв е естествения цвят на косата ти?</h1>
+                <label class="container">Ярко руса, пепеляво руса, бяла или много светла/платитно руса;
+                    <input type="radio" name="hairtype" value="hairtype-one">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Средно кестенява, кестенява с меден оттенък, кестеняво-червеникава;
+                    <input type="radio" name="hairtype" value="hairtype-two">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Черна или много тъмно кестенява;
+                    <input type="radio" name="hairtype" value="hairtype-three">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h4>2. Какъв е цветът на очите ти?</h1>
+                    <label class="container">Светли (сини, зелени);
+                        <input type="radio" name="eyecolor" value="-one">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Средно кафяви, пъстри;
+                        <input type="radio" name="eyecolor" value="eyecolor-two">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Тъмно кафяви, почти черни;
+                        <input type="radio" name="eyecolor" value="eyecolor-three">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Сиви, сиво-зелени;
+                        <input type="radio" name="eyecolor" value="eyecolor-four">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <h4>3. Какъв е подтонът на кожата ти?</h1>
+                        <label class="container">Топъл (вените на китката изглеждат зеленикави);
+                            <input type="radio" name="undertone" value="hairtype-one">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="container">Студен (вените на китката изглеждат синьо‑лилави);
+                            <input type="radio" name="undertone" value="hairtype-two">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="container">Неутрален (синьо-лилави и зелени);
+                            <input type="radio" name="undertone" value="hairtype-three">
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <h4>4 Как реагира кожата ти на слънце? </h1>
+                            <label class="container">Изгарям лесно (първо порозовявам);
+                                <input type="radio" name="sunburn" value="sunburn-one">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">Не изгарям лесно (тена ми постепенно става златист);
+                                <input type="radio" name="sunburn" value="sunburn-two">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">Изпичам се добре (отнема ми повече време да получа тен);
+                                <input type="radio" name="sunburn" value="sunburn-three">
+                                <span class="checkmark"></span>
+                            </label>
+                <button id="see-result" class="button">Виж резултата</button>
+                <p id="result-text"></p>
+        </section>
+
+        <section id="project-view">
+            <h1>За проекта</h1>
+            <h3>Това е уеб сайт със SPA (single page application) и интегриран JS. Страницата е с учебна цел, но
+                може да бъде и полезна! 😊</h3>
+            <h3>При нужда пиши ми на: dayana.borissova@icloud.com</h3>
+            <h2><a href="https://www.etsy.com/shop/ModenaArtBulgaria"><img src="https://modena-art.eu/images/etsy.png"
+                        title="My Etsy Store"></a>
+                <a href="https://www.instagram.com/dd.borisova"><img src="https://modena-art.eu/images/instagram.png"
+                        title="My personal Instagram"></a>
+                <a href="https://modena-art.eu/pinkpantherproject.html">
+                    <img src="https://modena-art.eu/images/diamond.png" title="Click on me for fun!">
+                </h2>
+
+        </section>
+
+        <section id="spring-view">
+
+        </section>
+
+        <section id="summer-view">
+
+        </section>
+
+        <section id="autumn-view">
+
+        </section>
+
+        <section id="winter-view">
+
+        </section>
+</div>
 </body>
+
 </html>
