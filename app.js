@@ -1,22 +1,13 @@
-import page from 'https://unpkg.com/page/page.mjs';
-import { html, render } from 'https://unpkg.com/lit-html?module';
+import { navigate } from './dom.js';
 
+import { showHome } from './home.js';
+import { showTest } from './test.js';
+import { showProject } from './project.js';
 
-import { layout } from './src/layout.js'
-import { homeView } from './src/home.js';
-import { testView } from './src/test.js';
-import { paletteView } from './src/palettejs';
+document.getElementById('hidden').remove();
 
-homeView();
+showHome();
 
-const root = document.getElementById('app');
-
-function renderView(content, title) {
-    render(layout(content, title), root);
-}
-
-page('/', () => renderView(homeView(), 'Home'));
-page('/test', () => renderView(aboutView(), 'Test'));
-page('/palette', () => renderView(oaletteView(), 'Palette'));
-
-page(); 
+document.getElementById('home-link').addEventListener('click', (e) => navigate(e, showHome));
+document.getElementById('test-link').addEventListener('click', (e) => navigate(e, showTest));
+document.getElementById('project-link').addEventListener('click', (e) => navigate(e, showProject));
