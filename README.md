@@ -1,1 +1,1 @@
-currently in process of developing, many files are yet to be created
+All three pages work, whats left is to add a page for each Season
